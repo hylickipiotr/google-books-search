@@ -7,23 +7,23 @@ const buildURL = (url, paramsObject) => {
   return `${url}?${paramsString}`;
 };
 
-const getBooks = async ({
+const getBooks = ({
   q = '',
   startIndex = 0,
   maxResults = 10,
 }) => {
-
-  const params = {
+  
+  const url = buildURL(URL_API, {
     q,
     startIndex,
     maxResults
-  };
+  });
 
-  const url = buildURL(URL_API, params);
-  const response = await fetch(url);
-  
-  const data = await response.json();
-  return data;
+  return new Promise(async (resolve, reject) => {
+    const response = await fetch(url);
+    const data = await response.json();
+    resolve(data);
+  });
 };
 
 export default getBooks;

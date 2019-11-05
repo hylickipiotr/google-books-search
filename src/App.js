@@ -15,29 +15,24 @@ const App = () => {
   const [loadedItems, setLoadedItems] = useState(0);
   const [totalItems, setTotalItems] = useState(0);
 
-  const loadBooks = async () => {
-    const searchParams = {
+  const loadBooks = () => getBooks({
       q: query, 
       maxResult: amount
-    };
-    const { totalItems, items }  = await getBooks(searchParams);
-    setTotalItems(totalItems);
-    setLoadedItems(items.length);
-    setBooks([...items]);
-  };
+    }).then(({totalItems, items}) => {
+      setTotalItems(totalItems);
+      setLoadedItems(items.length);
+      setBooks([...items]);
+    });
   
-  const loadMoreBooks = async () => {
-    const searchParams = {
+  const loadMoreBooks = () => getBooks({
       q: query, 
       maxResult: amount,
       startIndex: loadedItems
-    };
-
-    const { totalItems, items } = await getBooks(searchParams);
-    setTotalItems(totalItems);
-    setLoadedItems(loadedItems+items.length);
-    setBooks([...books, ...items]);
-  };
+    }).then(({totalItems, items}) => {
+      setTotalItems(totalItems);
+      setLoadedItems(loadedItems+items.length);
+      setBooks([...books, ...items]);
+    });
 
   const submitSearch = (e) => {
     e.preventDefault();
