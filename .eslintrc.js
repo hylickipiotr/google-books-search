@@ -19,5 +19,7 @@ module.exports = {
         "react"
     ],
     "rules": {
+        "semi": 1,
+        "no-duplicate-imports": 1
     }
 };

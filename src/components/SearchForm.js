@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 import { Form, Button } from 'react-bootstrap';
 
 const SearchForm = ({searchValue, onChangeSearchValue, formSubmit}) => {
@@ -12,7 +12,7 @@ const SearchForm = ({searchValue, onChangeSearchValue, formSubmit}) => {
         Search
       </Button>
     </Form>
-  )
-}
+  );
+};
 
-export default SearchForm
+export default SearchForm;

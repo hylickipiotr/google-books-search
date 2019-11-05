@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 import { CardColumns } from 'react-bootstrap';
 import BookCard from './BookCard';
 
@@ -17,7 +17,7 @@ const CardList = ({ books }) => {
         )}
       </CardColumns>
     </div>
-  )
-}
+  );
+};
 
-export default CardList
+export default CardList;

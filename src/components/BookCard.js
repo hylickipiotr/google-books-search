@@ -1,6 +1,6 @@
+import { Button, Card } from 'react-bootstrap'; 
 import React, { Suspense } from 'react';
 
-import { Card, Button } from 'react-bootstrap'; 
 
 const BookCard = ({ thumbnailURL, title, desciption, url }) => {
   return (
@@ -14,7 +14,7 @@ const BookCard = ({ thumbnailURL, title, desciption, url }) => {
         </Card.Body>
       </Card>
     </Suspense>
-  )
-}
+  );
+};
 
-export default BookCard
+export default BookCard;
