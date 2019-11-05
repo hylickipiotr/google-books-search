@@ -14,6 +14,7 @@ const App = () => {
   const [amount, setAmount] = useState(10);
   const [loadedItems, setLoadedItems] = useState(0);
   const [totalItems, setTotalItems] = useState(0);
+  const [queryError, setQueryError] = useState('');
 
   const loadBooks = () => getBooks({
       q: query, 
@@ -36,6 +37,11 @@ const App = () => {
 
   const submitSearch = (e) => {
     e.preventDefault();
+    if(!query.length) {
+      setQueryError('Query can\'t by empt');
+      return;
+    }  
+    setQueryError('');
     loadBooks();
   };
 
@@ -46,9 +52,11 @@ const App = () => {
         <SearchForm 
           searchValue={query} 
           onChangeSearchValue={setQuery}
+          searchInputError={queryError}
           amountOpitonValue={amount}
           onChangeAmountOpiton={setAmount}
-          formSubmit={submitSearch}  
+          formSubmit={submitSearch}
+          
         />
         <hr/>
         {loadedItems ? <h3>Results: {loadedItems}/{totalItems}</h3> : ''}
