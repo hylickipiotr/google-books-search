@@ -16,7 +16,7 @@ const App = () => {
   const [totalItems, setTotalItems] = useState(0);
 
   const loadBooks = async () => {
-    const { totalItems, items }  = await getBooks(query);
+    const { totalItems, items }  = await getBooks(query, undefined, amount);
     setTotalItems(totalItems);
     setLoadedItems(items.length);
     setBooks([...items]);
@@ -38,7 +38,13 @@ const App = () => {
     <div className='App'>
       <Container>
         <h1>Google Boooks Searcher <span role='img' aria-label='books'>📚</span></h1>
-        <SearchForm searchValue={query} onChangeSearchValue={setQuery} formSubmit={submitSearch}/>
+        <SearchForm 
+          searchValue={query} 
+          onChangeSearchValue={setQuery}
+          amountOpitonValue={amount}
+          onChangeAmountOpiton={setAmount}
+          formSubmit={submitSearch}  
+        />
         <hr/>
         {loadedItems ? <h3>Results: {loadedItems}/{totalItems}</h3> : ''}
         <CardList books={books}/>
