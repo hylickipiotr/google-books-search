@@ -18,7 +18,7 @@ const App = () => {
 
   const loadBooks = () => getBooks({
       q: query, 
-      maxResult: amount
+      maxResults: amount
     }).then(({totalItems, items}) => {
       setTotalItems(totalItems);
       setLoadedItems(items.length);
@@ -27,7 +27,7 @@ const App = () => {
   
   const loadMoreBooks = () => getBooks({
       q: query, 
-      maxResult: amount,
+      maxResults: amount,
       startIndex: loadedItems
     }).then(({totalItems, items}) => {
       setTotalItems(totalItems);
