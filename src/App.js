@@ -1,26 +1,19 @@
 import React, { useState }from 'react';
 import { Container, Button } from 'react-bootstrap';
 
+import getBooks from './helpers/googleBooksAPI';
+
 import CardList from './components/CardList';
 import SearchForm from './components/SearchForm';
 
 import './App.css';
 
 const App = () => {
-  const URL_API = 'https://www.googleapis.com/books/v1/volumes?q=';
   const [books, setBooks] = useState([]);
   const [query, setQuery] = useState('');
   const [amount, setAmount] = useState(10);
   const [loadedItems, setLoadedItems] = useState(0);
   const [totalItems, setTotalItems] = useState(0);
-
-
-
-  const getBooks = async (serchTerm ,startPoint = 0, amount = 10) => {
-    const response = await fetch(`${URL_API}${serchTerm}&startIndex=${startPoint}`);
-    const data = await response.json();
-    return data;
-  };
 
   const loadBooks = async () => {
     const { totalItems, items }  = await getBooks(query);
@@ -28,7 +21,7 @@ const App = () => {
     setLoadedItems(items.length);
     setBooks([...items]);
   };
-
+  
   const loadMoreBooks = async () => {
     const { totalItems, items } = await getBooks(query, loadedItems, amount);
     setTotalItems(totalItems);
