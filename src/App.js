@@ -21,8 +21,8 @@ const App = () => {
       maxResults: amount
     }).then(({totalItems, items}) => {
       setTotalItems(totalItems);
-      setLoadedItems(items.length);
-      setBooks([...items]);
+      setLoadedItems(items ? items.length : 0);
+      setBooks(items ? [...items] : []);
     });
   
   const loadMoreBooks = () => getBooks({
