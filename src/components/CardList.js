@@ -9,7 +9,7 @@ const CardList = ({ books }) => {
         {books.map((book) => 
           <BookCard 
             key={book.id} 
-            thumbnailURL={book.volumeInfo.imageLinks.thumbnail} 
+            thumbnailURL={book.volumeInfo.imageLinks ? book.volumeInfo.imageLinks.thumbnail : ''} 
             title={book.volumeInfo.title} 
             description={book.volumeInfo.description} 
             url={book.volumeInfo.canonicalVolumeLink} 

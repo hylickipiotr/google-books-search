@@ -18,7 +18,7 @@ const App = () => {
   const loadBooks = async () => {
     const response = await fetch(`${URL_API}${query}&startIndex=${startIndex}`);
     const data = await response.json();
-
+    console.log(data);
     setTotalItems(data.totalItems);
     setStartIndex(startIndex+amount);
     setLoadedItems(loadedItems+data.items.length);
