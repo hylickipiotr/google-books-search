@@ -16,14 +16,24 @@ const App = () => {
   const [totalItems, setTotalItems] = useState(0);
 
   const loadBooks = async () => {
-    const { totalItems, items }  = await getBooks(query, undefined, amount);
+    const searchParams = {
+      q: query, 
+      maxResult: amount
+    };
+    const { totalItems, items }  = await getBooks(searchParams);
     setTotalItems(totalItems);
     setLoadedItems(items.length);
     setBooks([...items]);
   };
   
   const loadMoreBooks = async () => {
-    const { totalItems, items } = await getBooks(query, loadedItems, amount);
+    const searchParams = {
+      q: query, 
+      maxResult: amount,
+      startIndex: loadedItems
+    };
+
+    const { totalItems, items } = await getBooks(searchParams);
     setTotalItems(totalItems);
     setLoadedItems(loadedItems+items.length);
     setBooks([...books, ...items]);

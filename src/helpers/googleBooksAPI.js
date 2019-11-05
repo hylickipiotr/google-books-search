@@ -1,7 +1,27 @@
-const URL_API = 'https://www.googleapis.com/books/v1/volumes?q=';
+import queryString from 'query-string';
 
-const getBooks = async (serchTerm ,startPoint = 0, amount = 10) => {
-  const response = await fetch(`${URL_API}${serchTerm}&startIndex=${startPoint}&maxResults=${amount}`);
+const URL_API = 'https://www.googleapis.com/books/v1/volumes';
+
+const buildURL = (url, paramsObject) => {
+  const paramsString = queryString.stringify(paramsObject);
+  return `${url}?${paramsString}`;
+};
+
+const getBooks = async ({
+  q = '',
+  startIndex = 0,
+  maxResults = 10,
+}) => {
+
+  const params = {
+    q,
+    startIndex,
+    maxResults
+  };
+
+  const url = buildURL(URL_API, params);
+  const response = await fetch(url);
+  
   const data = await response.json();
   return data;
 };
