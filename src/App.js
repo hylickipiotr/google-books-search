@@ -59,7 +59,7 @@ const App = () => {
           
         />
         <hr/>
-        {loadedItems ? <h3>Results: {loadedItems}/{totalItems}</h3> : ''}
+        {loadedItems ? <span className="text-muted">Results: {loadedItems}/{totalItems}</span> : ''}
         <CardList books={books}/>
         {books.length && loadedItems < totalItems ? <Button onClick={() => loadMoreBooks()}>Load more...</Button> : ''}
       </Container>
